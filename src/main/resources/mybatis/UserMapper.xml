@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahao.mybatis.user.UserMapper">
+    <!--<select id="findUser" resultType="User">
+        select * from ahaouser where id=#{id}
+    </select>-->
+    <select id="findUsers" resultType="User">
+        select * from ahaouser
+    </select>
+    <insert id="addUsers" useGeneratedKeys="true" keyProperty="id">
+        insert into ahaouser (name,age,sex) values
+        <foreach item="User" collection="list" separator=",">
+            (#{User.name},#{User.age},#{User.sex})
+        </foreach>
+    </insert>
+</mapper>
